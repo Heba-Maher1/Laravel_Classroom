@@ -2,8 +2,9 @@
 @section('title' , 'Show Class')
 @section('content')
 <div class="container">
-    <h1>{{ $classroom->name}} (#{{$classroom->id}})</h1>
-    <h3>{{ $classroom->section}}</h3>
+    <img class="card-img-top my-3 position-relative rounded" src="{{asset('storage/'.$classroom->cover_image_path) }}" alt="Card image cap">
+    <h1 style="top: 260px;left:150px;" class="position-absolute text-white">{{ $classroom->name}} (#{{$classroom->id}})</h1>
+    <h3 style="top: 330px;left:150px;" class="position-absolute text-white">{{ $classroom->section}}</h3>
     <div class="row">
         <div class="col-md-3">
             <div class="border rounded p-3 text-center">

@@ -6,6 +6,7 @@ use App\Models\Classroom;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ClassroomsController extends Controller
@@ -13,9 +14,10 @@ class ClassroomsController extends Controller
     //
 
     public function index()
-    {
+    { 
         $classrooms = Classroom::orderBy('created_at' , 'DESC')->get();
-        return view('classrooms.index'  , compact('classrooms'));
+        $success = session('success');
+        return view('classrooms.index'  , compact('classrooms' , 'success'));
     }
 
     public function create()
@@ -43,13 +45,14 @@ class ClassroomsController extends Controller
 
         $classroom = Classroom::create($request->all());
 
-        return redirect()->route('classrooms.index');
+        return redirect()->route('classrooms.index')
+                         ->with('success' , 'Classroom Created');
     }
     
 
-    public function show(string $id)
+    public function show(Classroom $classroom)
     {
-        $classroom = Classroom::find($id);
+
         if(!$classroom)
         {
             abort(404);
@@ -60,10 +63,9 @@ class ClassroomsController extends Controller
         ]);
     }
 
-    public function edit(string $id)
+    public function edit(Classroom $classroom)
     {
 
-        $classroom = Classroom::find($id);
         if(!$classroom)
         {
             abort(404);
@@ -74,18 +76,32 @@ class ClassroomsController extends Controller
 
     }
 
-    public function update(Request $request ,string $id)
+    public function update(Request $request ,Classroom $classroom)
     {
-        $classroom = Classroom::find($id);
-        $classroom->update($request->all());
 
-        return Redirect::route('classrooms.index');
+        if ($request->hasFile('cover_image')) {
+            Storage::disk('public')->delete($classroom->cover_image_path);
+    
+            $file = $request->file('cover_image');
+            $path = $file->store('/covers', 'public');
+    
+            $classroom->update([
+                'cover_image_path' => $path
+            ]);
+        }
+    
+        $classroom->update($request->all());
+    
+        return redirect()->route('classrooms.index')->with('success' , 'Classroom Updated');
     }
 
-    public function destroy(string $id)
+    public function destroy(Classroom $classroom)
     {
-        Classroom::destroy($id);
 
-        return redirect(route('classrooms.index'));
+        Storage::disk('public')->delete($classroom->cover_image_path);
+
+        $classroom->delete();
+
+        return redirect(route('classrooms.index'))->with('success' , 'Classroom Deleted');
     }
 }

@@ -10,7 +10,7 @@
             <input type="text" class="form-control" id="classname" placeholder="Topic  Name" name="name">
             <label for="classname">Topic Name</label>
         </div>
-        <button type="submit" class="btn btn-success">Create Topic</button>
+        <button type="submit" class="btn btn-success">Update Topic</button>
     </form>
 </div>
 

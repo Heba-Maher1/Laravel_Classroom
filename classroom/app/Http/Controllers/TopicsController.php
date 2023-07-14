@@ -42,7 +42,7 @@ class TopicsController extends Controller
         }
 
         return view('topics.show' , [
-            'classroom' => $topics,
+            'topic' => $topics,
         ]);
     }
 

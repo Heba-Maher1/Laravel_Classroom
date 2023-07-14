@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-5">
     <h1>Update Classroom</h1>
-    <form action="{{ route('classrooms.update' , $classroom->id)}}" method="post">
+    <form action="{{ route('classrooms.update' , $classroom->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="form-floating mb-3">
@@ -26,10 +26,10 @@
             <label for="room">Room</label>
         </div>
 
-        <img src="{{ Storage::disk('public')->url($classroom->cover_image_pat) }]" alt="">
+        {{-- <img class="card-img-top" src="{{asset('storage/'.$classroom->cover_image_path) }}" alt="Card image cap"> --}}
 
         <div class="form-floating mb-3">
-            <input type="file" class="form-control" id="cover_image" placeholder="cover_image" name="cover_image">
+            <input type="file" class="form-control" id="cover_image" placeholder="cover_image" name="cover_image" >
             <label for="cover_image">Cover Image</label>
         </div>
         <button type="submit" class="btn btn-success">Update Room</button>

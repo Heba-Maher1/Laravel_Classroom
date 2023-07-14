@@ -23,15 +23,14 @@ Route::get('/', function () {
 // Route::post('/classrooms/store', [ClassroomsController::class, 'store'])->name('classroom-store');
 
 
-// Route::resource('classrooms', ClassroomsController::class);
-Route::get('/classrooms' , [ClassroomsController::class ,'index'])->name('classrooms.index');
-Route::get('/classrooms/create' , [ClassroomsController::class ,'create'])->name('classrooms.create');
-Route::post('/classrooms/store', [ClassroomsController::class, 'store'])->name('classrooms.store');
-Route::get('/classrooms/{id}' , [ClassroomsController::class ,'show'])->name('classrooms.show')->where(['id' => '\d+']);
-Route::get('/classrooms/{id}/edit' , [ClassroomsController::class ,'edit'])->name('classrooms.edit')->where(['id' => '\d+']);
-Route::put('/classrooms/{id}' , [ClassroomsController::class ,'update'])->name('classrooms.update')->where(['id' => '\d+']);
-Route::delete('/classrooms/{id}' , [ClassroomsController::class ,'destroy'])->name('classrooms.destroy')->where(['id' => '\d+']);
-
+Route::resource('/classrooms', ClassroomsController::class);
+// Route::get('/classrooms' , [ClassroomsController::class ,'index'])->name('classrooms.index');
+// Route::get('/classrooms/create' , [ClassroomsController::class ,'create'])->name('classrooms.create');
+// Route::post('/classrooms/store', [ClassroomsController::class, 'store'])->name('classrooms.store');
+// Route::get('/classrooms/{classroom}' , [ClassroomsController::class ,'show'])->name('classrooms.show')->where(['id' => '\d+']);
+// Route::get('/classrooms/{id}/edit' , [ClassroomsController::class ,'edit'])->name('classrooms.edit')->where(['id' => '\d+']);
+// Route::put('/classrooms/{id}' , [ClassroomsController::class ,'update'])->name('classrooms.update')->where(['id' => '\d+']);
+// Route::delete('/classrooms/{id}' , [ClassroomsController::class ,'destroy'])->name('classrooms.destroy')->where(['id' => '\d+']);
 
 
 // topics
