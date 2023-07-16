@@ -2,6 +2,11 @@
 @section('title' , 'Show Topic')
 @section('content')
 <div class="container">
+    @if($message = Session::get('success'))
+    <div class="alert alert-success">
+      {{ $message }}
+    </div>
+  @endif  
     <div class="row">
         <div class="col-md-3">
             <div class="border rounded p-3 text-center">

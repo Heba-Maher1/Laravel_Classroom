@@ -16,7 +16,7 @@
   <div class="row ">
     @foreach($classrooms as $classroom)
     <div class="col-md-3">
-      <div class="card mb-4" style="width:20rem; height:18rem;">
+      <div class="card mb-4 " style="width:20rem; height:18rem;">
         <div class="image ">
           <img class="card-img-top" src="storage/{{ $classroom->cover_image_path}}" alt="Card image cap" style="height:8rem;">
 

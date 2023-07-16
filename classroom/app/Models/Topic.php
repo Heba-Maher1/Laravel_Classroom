@@ -14,4 +14,9 @@ class Topic extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function classroom()
+{
+    return $this->belongsTo(Classroomoom::class);
+}
 }

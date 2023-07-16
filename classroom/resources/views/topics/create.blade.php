@@ -4,6 +4,17 @@
 
 <div class="container mt-5">
     <h1>Create Topic</h1>
+    
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>     
+        </div>
+    @endif
+
     <form action="{{ route('topics.store')}}" method="post">
         @csrf
         <div class="form-floating mb-3">
